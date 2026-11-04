@@ -2,8 +2,11 @@
 from __future__ import annotations
 
 import html
+import hashlib
 import logging
+import os
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,7 +18,9 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.generation import GroqAnswerGenerator
+from src.chunking.chunker import chunk_documents
 from src.guardrails import check_input, validate_answer
+from src.ingestion.loader import load_documents
 from src.retrieval import Retriever
 from src.vector_store.store import ChromaStore
 
@@ -76,7 +81,11 @@ def load_config():
 
 @st.cache_resource
 def get_answer_generator(model_name: str):
-    return GroqAnswerGenerator(model_name)
+    try:
+        hosted_api_key = st.secrets.get("GROQ_API_KEY", "")
+    except Exception:
+        hosted_api_key = ""
+    return GroqAnswerGenerator(model_name, api_key=hosted_api_key)
 
 
 @st.cache_resource
@@ -84,6 +93,68 @@ def get_embedder(model_name: str):
     # Load the heavyweight model only when a question needs retrieval.
     from src.embeddings.service import EmbeddingService
     return EmbeddingService(model_name)
+
+
+@st.cache_resource
+def get_retriever(
+    model_name: str,
+    persist_directory: str,
+    collection_name: str,
+    top_k: int,
+    relevance_threshold: float,
+    chunk_size: int,
+    chunk_overlap: int,
+):
+    # Community Cloud runs on Linux and its local disk is temporary. Keep its
+    # rebuildable Chroma index under /tmp; retain the configured path locally.
+    if os.name == "nt":
+        persist_path = ROOT / persist_directory
+    else:
+        persist_path = Path(tempfile.gettempdir()) / "groww-chatbot-chroma"
+
+    store = ChromaStore(persist_path, collection_name, model_name)
+    documents = None
+    marker_path = None
+
+    if os.name != "nt":
+        # On a redeploy, /tmp may survive even when its source snapshot changes.
+        # A small fingerprint lets the cloud rebuild only when the seed docs change.
+        documents = load_documents(ROOT / "data" / "processed")
+        fingerprint_input = "\n".join(
+            f"{doc.metadata['source_id']}:{doc.metadata['content_hash']}"
+            for doc in sorted(documents, key=lambda item: item.metadata["source_id"])
+        )
+        source_fingerprint = hashlib.sha256(fingerprint_input.encode("utf-8")).hexdigest()
+        marker_path = persist_path.parent / f"{collection_name}.source.sha256"
+        saved_fingerprint = marker_path.read_text(encoding="utf-8").strip() if marker_path.exists() else ""
+        if saved_fingerprint != source_fingerprint and store.count() > 0:
+            store.reset()
+
+    embedder = get_embedder(model_name)
+    if store.count() == 0:
+        if documents is None:
+            documents = load_documents(ROOT / "data" / "processed")
+        if not documents:
+            raise RuntimeError("No bundled Groww source documents were found in data/processed.")
+        chunks = chunk_documents(
+            documents,
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap,
+        )
+        if not chunks:
+            raise RuntimeError("The bundled Groww source documents produced no searchable chunks.")
+        vectors = embedder.embed_texts([chunk.text for chunk in chunks])
+        store.upsert_chunks(chunks, vectors)
+        logger.info("Built searchable index with %s chunks from %s sources", len(chunks), len(documents))
+    if marker_path is not None:
+        marker_path.write_text(source_fingerprint, encoding="utf-8")
+
+    return Retriever(
+        store,
+        embedder,
+        top_k=top_k,
+        relevance_threshold=relevance_threshold,
+    )
 
 
 def render_sources(sources: list[dict[str, str]]) -> None:
@@ -176,21 +247,20 @@ if query:
         trace["validation"] = {"status": "not_applicable", "reason": check.category}
     else:
         try:
-            with st.spinner("Finding source evidence…"):
+            with st.spinner("Preparing the source index and finding evidence…"):
                 e_cfg = cfg.get("embeddings", {})
                 v_cfg = cfg.get("vector_store", {})
                 r_cfg = cfg.get("retrieval", {})
-                embedder = get_embedder(e_cfg.get("model", "sentence-transformers/all-MiniLM-L6-v2"))
-                store = ChromaStore(
-                    ROOT / v_cfg.get("persist_directory", "data/chroma"),
-                    v_cfg.get("collection_name", "hdfc_mf_faq"),
-                    e_cfg.get("model"),
-                )
-                retriever = Retriever(
-                    store,
-                    embedder,
+                chunk_cfg = cfg.get("chunking", {})
+                model_name = e_cfg.get("model", "sentence-transformers/all-MiniLM-L6-v2")
+                retriever = get_retriever(
+                    model_name=model_name,
+                    persist_directory=v_cfg.get("persist_directory", "data/chroma"),
+                    collection_name=v_cfg.get("collection_name", "hdfc_mf_faq"),
                     top_k=int(r_cfg.get("top_k", 5)),
                     relevance_threshold=float(r_cfg.get("relevance_threshold", .45)),
+                    chunk_size=int(chunk_cfg.get("chunk_size", 800)),
+                    chunk_overlap=int(chunk_cfg.get("chunk_overlap", 120)),
                 )
                 result = retriever.retrieve(check.safe_query)
 

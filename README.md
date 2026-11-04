@@ -15,7 +15,18 @@ Phases 1–9 are implemented: ingestion, chunking, embeddings, ChromaDB retrieva
 
 ## Data and secrets
 
-Local scraped data and ChromaDB files are excluded from Git. Never commit `.env` or API keys.
+The five cleaned JSON source snapshots in `data/processed/` are included so a hosted app can rebuild its index. Raw HTML, the scrape report, and the local ChromaDB files are excluded from Git. Never commit `.env`, `.streamlit/secrets.toml`, or API keys.
+
+## Deploy to Streamlit Community Cloud
+
+1. Sign in at [share.streamlit.io](https://share.streamlit.io/) with the GitHub account that owns this repository, then choose **Create app**.
+2. Select repository `dollygadhre96-ship-it/Groww-ChatBot`, branch `main`, and entrypoint `app/main.py`.
+3. In **Advanced settings**, choose Python 3.12 and add the Groq key in **Secrets** using the TOML format shown in `.streamlit/secrets.toml.example`. Do not paste the key into GitHub or this README.
+4. Deploy. The first factual question builds a Chroma index from the five bundled source snapshots and downloads the embedding model, so its first answer can take longer. Later questions reuse the cached model and index.
+
+The app uses temporary local storage for its hosted Chroma index and rebuilds it from the bundled JSON snapshots if the host restarts. To refresh the source snapshots, rerun the scraper and index workflow locally, then commit the updated JSON files.
+
+The app's default visibility follows the GitHub repository: a public repository creates a public app by default. Anyone who can use a public app can send questions that consume the Groq API quota. If you want to restrict use, change the app to private in its Streamlit Community Cloud sharing settings.
 
 
 ## Phase 2 — Scraping source documents

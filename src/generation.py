@@ -11,12 +11,12 @@ from groq import Groq
 class GroqAnswerGenerator:
     """Generate concise answers using only retrieved source evidence."""
 
-    def __init__(self, model: str):
+    def __init__(self, model: str, api_key: str | None = None):
         env_path = Path(__file__).resolve().parents[1] / ".env"
         load_dotenv(env_path, override=False)
-        api_key = os.getenv("GROQ_API_KEY", "").strip()
+        api_key = (api_key or os.getenv("GROQ_API_KEY", "")).strip()
         if not api_key:
-            raise RuntimeError("GROQ_API_KEY is missing from the project .env file")
+            raise RuntimeError("GROQ_API_KEY is missing from local or hosted app secrets")
         if not model or not model.strip():
             raise ValueError("A Groq model name is required")
         self.model = model.strip()
