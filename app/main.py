@@ -45,6 +45,15 @@ header[data-testid="stHeader"] { background: transparent; }
 .app-subtitle { margin: .42rem 0 0; color: #686680; font-size: .94rem; }
 .header-badge { display: inline-flex; align-items: center; gap: .48rem; padding: .55rem .78rem; border: 1px solid #e2e4ed; border-radius: 999px; background: rgba(255,255,255,.86); color: #54536e; font-size: .75rem; font-weight: 650; white-space: nowrap; }
 .badge-dot { width: .48rem; height: .48rem; border-radius: 50%; background: #36bd91; box-shadow: 0 0 0 4px rgba(54,189,145,.13); }
+.coverage-card { position: sticky; top: 1rem; margin: 0 0 1.15rem; padding: 1rem .8rem 1.1rem; border: 1px solid #d8e6e9; border-radius: 1.15rem; background: linear-gradient(145deg, #e9f4fb 0%, #f0eef9 55%, #e7f4ed 100%); box-shadow: 0 8px 20px rgba(70,111,126,.08); }
+.coverage-heading { display: flex; align-items: center; justify-content: space-between; gap: .7rem; margin: 0 0 .72rem; color: #526b79; font-size: .72rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+.coverage-count { padding: .25rem .55rem; border: 1px solid #d5e5e9; border-radius: 999px; background: rgba(255,255,255,.72); color: #617985; font-size: .65rem; letter-spacing: .04em; }
+.coverage-grid { display: grid; grid-template-columns: 1fr; gap: .48rem; }
+a.coverage-item { display: flex; align-items: center; gap: .58rem; min-width: 0; padding: .58rem .68rem; border: 1px solid rgba(213,226,231,.82); border-radius: .8rem; background: rgba(255,255,255,.74); color: #354b57; text-decoration: none !important; font-size: .79rem; line-height: 1.35; transition: border-color .18s ease, background .18s ease, transform .18s ease; }
+a.coverage-item:hover { transform: translateY(-1px); border-color: #a9cbd2; background: #ffffff; }
+.coverage-dot { width: .48rem; height: .48rem; flex: 0 0 .48rem; border-radius: 50%; background: #55c6a1; box-shadow: 0 0 0 3px rgba(85,198,161,.13); }
+.coverage-name { flex: 1; }
+.coverage-type { flex: 0 0 auto; color: #778a95; font-size: .63rem; font-weight: 650; }
 .welcome-card { margin: .2rem 0 1.3rem; padding: 1.45rem 1.55rem; border: 1px solid #ded7ec; border-left: 4px solid #e89b78; border-radius: 1.25rem; background: linear-gradient(118deg, #fffdfa 0%, #f3effa 72%, #e8f5f0 100%); box-shadow: 0 10px 25px rgba(71,65,130,.08); }
 .welcome-eyebrow { display: inline-flex; margin: 0 0 .5rem; padding: .28rem .58rem; border-radius: 999px; background: #efedff; color: #6254bd; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .welcome-title { margin: 0 0 .45rem; color: #292747; font-size: 1.48rem; font-weight: 750; letter-spacing: -.035em; }
@@ -59,10 +68,10 @@ header[data-testid="stHeader"] { background: transparent; }
 .stButton > button:hover { transform: translateY(-2px); border-color: #b9afea !important; background: linear-gradient(145deg, #ffffff 0%, #f5f2ff 100%) !important; box-shadow: 0 10px 21px rgba(76,69,139,.1); }
 .stButton > button:focus { border-color: #9588db !important; box-shadow: 0 0 0 3px rgba(149,136,219,.16) !important; }
 [data-testid="stChatMessage"] { margin: .8rem 0; padding: 1.08rem 1.2rem; border: 1px solid #e8e6f0; border-left: 4px solid #b9afea; border-radius: 1.15rem; background: rgba(255,255,255,.96); box-shadow: 0 7px 18px rgba(54,50,98,.055); }
-[data-testid="stChatInput"] { border: 1px solid #d9cbbf; border-radius: 1.15rem; background: #fffdf9; box-shadow: 0 8px 20px rgba(104,77,53,.1); }
-[data-testid="stChatInput"]:focus-within { border-color: #a97856; box-shadow: 0 0 0 3px rgba(169,120,86,.16), 0 8px 20px rgba(104,77,53,.1); }
+[data-testid="stChatInput"] { border: 1.5px solid #b8d7e6; border-radius: 1.15rem; background: #f0f8fc; box-shadow: 0 9px 23px rgba(79,145,177,.14); }
+[data-testid="stChatInput"]:focus-within { border-color: #76b8d4; box-shadow: 0 0 0 4px rgba(118,184,212,.2), 0 9px 23px rgba(79,145,177,.14); }
 [data-testid="stChatInput"] textarea { color: #302e4d; }
-[data-testid="stChatInput"] button { border: 1px solid #805136; border-radius: .8rem; background: linear-gradient(135deg, #9b6848, #75482f); color: #ffffff; }
+[data-testid="stChatInput"] button { border: 1px solid #5d9fbe; border-radius: .8rem; background: linear-gradient(135deg, #82bfd9, #5d9fbe); color: #ffffff; }
 .source-heading { margin: 1rem 0 .55rem; color: #675dae; font-size: .72rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
 a.source-card { display: flex; align-items: center; gap: .75rem; margin: .48rem 0; padding: .8rem .92rem; border: 1px solid #e5e1f1; border-radius: 1rem; background: linear-gradient(105deg, #ffffff 0%, #faf9ff 74%, #f3fbf8 100%); color: #302e4d; text-decoration: none !important; font-size: .86rem; line-height: 1.45; box-shadow: 0 4px 13px rgba(66,61,120,.045); transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
 a.source-card:hover { transform: translateY(-1px); border-color: #b9afea; box-shadow: 0 8px 18px rgba(76,69,139,.09); }
@@ -76,6 +85,9 @@ a.source-card:hover { transform: translateY(-1px); border-color: #b9afea; box-sh
   .brand-mark { width: 2.85rem; height: 2.85rem; border-radius: .95rem; }
   .header-badge { display: none; }
   .app-subtitle { font-size: .83rem; }
+  .coverage-grid { grid-template-columns: 1fr; }
+  .coverage-card { position: static; }
+  a.coverage-item { font-size: .78rem; }
   .welcome-card { padding: 1.05rem; }
   .stButton > button { min-height: 3.6rem; }
   .facts-footer { border-radius: .8rem; }
@@ -188,6 +200,33 @@ def render_sources(sources: list[dict[str, str]]) -> None:
         )
 
 
+COVERED_SOURCES = [
+    ("HDFC Mutual Fund overview", "AMC profile", "https://groww.in/mutual-funds/amc/hdfc-mutual-funds"),
+    ("HDFC Large Cap", "Large Cap", "https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth"),
+    ("HDFC Flexi Cap", "Flexi Cap", "https://groww.in/mutual-funds/hdfc-equity-fund-direct-growth"),
+    ("HDFC ELSS Tax Saver", "ELSS", "https://groww.in/mutual-funds/hdfc-elss-tax-saver-fund-direct-plan-growth"),
+    ("HDFC Mid Cap", "Mid Cap", "https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth"),
+]
+
+
+def render_coverage() -> None:
+    items = []
+    for name, kind, url in COVERED_SOURCES:
+        items.append(
+            f'<a class="coverage-item" href="{html.escape(url, quote=True)}" '
+            'target="_blank" rel="noopener noreferrer">'
+            '<span class="coverage-dot"></span>'
+            f'<span class="coverage-name">{html.escape(name)}</span>'
+            f'<span class="coverage-type">{html.escape(kind)}</span></a>'
+        )
+    markup = (
+        '<section class="coverage-card"><div class="coverage-heading">'
+        '<span>Covered schemes</span><span class="coverage-count">5 Groww pages</span>'
+        '</div><div class="coverage-grid">' + "".join(items) + '</div></section>'
+    )
+    st.markdown(markup, unsafe_allow_html=True)
+
+
 cfg = load_config()
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -210,129 +249,134 @@ with controls:
         st.session_state.last_trace = None
         st.rerun()
 
-if not st.session_state.messages:
+coverage_col, chat_col = st.columns([0.95, 2.5], gap="large", vertical_alignment="top")
+with coverage_col:
+    render_coverage()
+
+with chat_col:
+    if not st.session_state.messages:
+        st.markdown(
+            '<div class="welcome-card"><p class="welcome-eyebrow">Your HDFC fund guide</p>'
+            '<p class="welcome-title">What would you like to know?</p>'
+            '<p class="welcome-copy">Ask about scheme details like expense ratios, exit loads, SIPs, benchmarks, or ELSS lock-in periods.</p>'
+            '<div class="welcome-tags"><span class="welcome-tag">Scheme facts</span><span class="welcome-tag">Source-linked</span><span class="welcome-tag">No investment advice</span></div></div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown('<div class="section-label">Start with a popular question</div>', unsafe_allow_html=True)
+        examples = [
+            "📈  What is the exit load of HDFC Large Cap Fund?",
+            "🔒  What is the lock-in period for HDFC ELSS?",
+            "◈  What is the benchmark of HDFC Mid Cap Fund?",
+        ]
+        cols = st.columns(3)
+        for index, (col, question) in enumerate(zip(cols, examples)):
+            with col:
+                if st.button(question, key=f"example_{index}", use_container_width=True):
+                    st.session_state.pending_query = question
+
+    for message in st.session_state.messages:
+        avatar = "🌱" if message["role"] == "assistant" else "🧑"
+        with st.chat_message(message["role"], avatar=avatar):
+            st.markdown(message["content"])
+            if message["role"] == "assistant":
+                render_sources(message.get("sources", []))
+
+    query = st.chat_input("Ask a factual HDFC Mutual Fund question…")
+    if not query and st.session_state.get("pending_query"):
+        query = st.session_state.pop("pending_query")
+
+    if query:
+        st.session_state.messages.append({"role": "user", "content": query})
+        with st.chat_message("user", avatar="🧑"):
+            st.markdown(query)
+
+        check = check_input(query)
+        trace = {
+            "query": query,
+            "input_check": {"allowed": check.allowed, "category": check.category, "message": check.message},
+        }
+        answer = check.message
+        sources: list[dict[str, str]] = []
+
+        if not check.allowed:
+            trace["retrieval"] = {"skipped": True}
+            trace["generation"] = {"status": "skipped", "reason": check.category}
+            trace["validation"] = {"status": "not_applicable", "reason": check.category}
+        else:
+            try:
+                with st.spinner("Preparing the source index and finding evidence…"):
+                    e_cfg = cfg.get("embeddings", {})
+                    v_cfg = cfg.get("vector_store", {})
+                    r_cfg = cfg.get("retrieval", {})
+                    chunk_cfg = cfg.get("chunking", {})
+                    model_name = e_cfg.get("model", "sentence-transformers/all-MiniLM-L6-v2")
+                    retriever = get_retriever(
+                        model_name=model_name,
+                        persist_directory=v_cfg.get("persist_directory", "data/chroma"),
+                        collection_name=v_cfg.get("collection_name", "hdfc_mf_faq"),
+                        top_k=int(r_cfg.get("top_k", 5)),
+                        relevance_threshold=float(r_cfg.get("relevance_threshold", .45)),
+                        chunk_size=int(chunk_cfg.get("chunk_size", 800)),
+                        chunk_overlap=int(chunk_cfg.get("chunk_overlap", 120)),
+                    )
+                    result = retriever.retrieve(check.safe_query)
+
+                sources = result.sources
+                trace["retrieval"] = {
+                    "top_k": retriever.top_k,
+                    "threshold": result.threshold,
+                    "no_evidence": result.no_evidence,
+                    "chunks": [
+                        {"id": c.id, "text": c.text, "metadata": c.metadata, "distance": c.distance, "relevance": c.relevance}
+                        for c in result.chunks
+                    ],
+                    "context": result.context,
+                    "sources": result.sources,
+                }
+
+                if result.no_evidence:
+                    answer = "I couldn't find this in the available Groww sources. Try asking about a specific HDFC Mutual Fund scheme detail."
+                    trace["generation"] = {"status": "skipped", "reason": "no_evidence"}
+                    trace["validation"] = {"status": "not_applicable", "reason": "no_evidence"}
+                else:
+                    llm_cfg = cfg.get("llm", {})
+                    model_name = llm_cfg.get("model", "qwen/qwen3.8-27b")
+                    max_sentences = int(llm_cfg.get("max_answer_sentences", 3))
+                    try:
+                        with st.spinner("Writing an answer from the retrieved evidence…"):
+                            answer = get_answer_generator(model_name).generate(
+                                check.safe_query, result.context, max_sentences=max_sentences
+                            )
+                        valid, reason = validate_answer(answer, result.sources, max_sentences=max_sentences)
+                        trace["generation"] = {"status": "complete", "model": model_name}
+                        trace["validation"] = {"status": "passed" if valid else "rejected", "reason": reason}
+                        if not valid:
+                            answer = "I couldn't produce a grounded answer that passed the source and length checks. Try rephrasing your question."
+                    except Exception as exc:
+                        logger.exception("Groq answer generation failed for model %s", model_name)
+                        answer = "I couldn't generate a grounded answer. Check GROQ_API_KEY in your Streamlit app's Settings → Secrets, then review the app logs if the problem continues."
+                        trace["generation"] = {
+                            "status": "failed",
+                            "error": type(exc).__name__,
+                            "cause": type(exc.__cause__).__name__ if exc.__cause__ else None,
+                        }
+                        trace["validation"] = {"status": "not_run", "reason": "generation_failed"}
+            except Exception as exc:
+                logger.exception("Retrieval failed while answering a user query")
+                answer = "The retrieval service isn't ready. Check that the embedding model is installed and the Chroma collection has been populated."
+                trace["error"] = type(exc).__name__
+                trace["generation"] = {"status": "not_attempted", "reason": "retrieval_failed"}
+                trace["validation"] = {"status": "not_run", "reason": "retrieval_failed"}
+
+        trace["answer"] = answer
+        trace.setdefault("validation", {"status": "not_applicable", "reason": "generation was skipped"})
+        st.session_state.last_trace = trace
+        st.session_state.messages.append({"role": "assistant", "content": answer, "sources": sources})
+        with st.chat_message("assistant", avatar="🌱"):
+            st.markdown(answer)
+            render_sources(sources)
+
     st.markdown(
-        '<div class="welcome-card"><p class="welcome-eyebrow">Your HDFC fund guide</p>'
-        '<p class="welcome-title">What would you like to know?</p>'
-        '<p class="welcome-copy">Ask about scheme details like expense ratios, exit loads, SIPs, benchmarks, or ELSS lock-in periods.</p>'
-        '<div class="welcome-tags"><span class="welcome-tag">Scheme facts</span><span class="welcome-tag">Source-linked</span><span class="welcome-tag">No investment advice</span></div></div>',
+        '<div class="facts-footer">Facts-only information from indexed Groww pages · No investment advice</div>',
         unsafe_allow_html=True,
     )
-    st.markdown('<div class="section-label">Start with a popular question</div>', unsafe_allow_html=True)
-    examples = [
-        "📈  What is the exit load of HDFC Large Cap Fund?",
-        "🔒  What is the lock-in period for HDFC ELSS?",
-        "◈  What is the benchmark of HDFC Mid Cap Fund?",
-    ]
-    cols = st.columns(3)
-    for index, (col, question) in enumerate(zip(cols, examples)):
-        with col:
-            if st.button(question, key=f"example_{index}", use_container_width=True):
-                st.session_state.pending_query = question
-
-for message in st.session_state.messages:
-    avatar = "🌱" if message["role"] == "assistant" else "🧑"
-    with st.chat_message(message["role"], avatar=avatar):
-        st.markdown(message["content"])
-        if message["role"] == "assistant":
-            render_sources(message.get("sources", []))
-
-query = st.chat_input("Ask a factual HDFC Mutual Fund question…")
-if not query and st.session_state.get("pending_query"):
-    query = st.session_state.pop("pending_query")
-
-if query:
-    st.session_state.messages.append({"role": "user", "content": query})
-    with st.chat_message("user", avatar="🧑"):
-        st.markdown(query)
-
-    check = check_input(query)
-    trace = {
-        "query": query,
-        "input_check": {"allowed": check.allowed, "category": check.category, "message": check.message},
-    }
-    answer = check.message
-    sources: list[dict[str, str]] = []
-
-    if not check.allowed:
-        trace["retrieval"] = {"skipped": True}
-        trace["generation"] = {"status": "skipped", "reason": check.category}
-        trace["validation"] = {"status": "not_applicable", "reason": check.category}
-    else:
-        try:
-            with st.spinner("Preparing the source index and finding evidence…"):
-                e_cfg = cfg.get("embeddings", {})
-                v_cfg = cfg.get("vector_store", {})
-                r_cfg = cfg.get("retrieval", {})
-                chunk_cfg = cfg.get("chunking", {})
-                model_name = e_cfg.get("model", "sentence-transformers/all-MiniLM-L6-v2")
-                retriever = get_retriever(
-                    model_name=model_name,
-                    persist_directory=v_cfg.get("persist_directory", "data/chroma"),
-                    collection_name=v_cfg.get("collection_name", "hdfc_mf_faq"),
-                    top_k=int(r_cfg.get("top_k", 5)),
-                    relevance_threshold=float(r_cfg.get("relevance_threshold", .45)),
-                    chunk_size=int(chunk_cfg.get("chunk_size", 800)),
-                    chunk_overlap=int(chunk_cfg.get("chunk_overlap", 120)),
-                )
-                result = retriever.retrieve(check.safe_query)
-
-            sources = result.sources
-            trace["retrieval"] = {
-                "top_k": retriever.top_k,
-                "threshold": result.threshold,
-                "no_evidence": result.no_evidence,
-                "chunks": [
-                    {"id": c.id, "text": c.text, "metadata": c.metadata, "distance": c.distance, "relevance": c.relevance}
-                    for c in result.chunks
-                ],
-                "context": result.context,
-                "sources": result.sources,
-            }
-
-            if result.no_evidence:
-                answer = "I couldn't find this in the available Groww sources. Try asking about a specific HDFC Mutual Fund scheme detail."
-                trace["generation"] = {"status": "skipped", "reason": "no_evidence"}
-                trace["validation"] = {"status": "not_applicable", "reason": "no_evidence"}
-            else:
-                llm_cfg = cfg.get("llm", {})
-                model_name = llm_cfg.get("model", "qwen/qwen3.8-27b")
-                max_sentences = int(llm_cfg.get("max_answer_sentences", 3))
-                try:
-                    with st.spinner("Writing an answer from the retrieved evidence…"):
-                        answer = get_answer_generator(model_name).generate(
-                            check.safe_query, result.context, max_sentences=max_sentences
-                        )
-                    valid, reason = validate_answer(answer, result.sources, max_sentences=max_sentences)
-                    trace["generation"] = {"status": "complete", "model": model_name}
-                    trace["validation"] = {"status": "passed" if valid else "rejected", "reason": reason}
-                    if not valid:
-                        answer = "I couldn't produce a grounded answer that passed the source and length checks. Try rephrasing your question."
-                except Exception as exc:
-                    logger.exception("Groq answer generation failed for model %s", model_name)
-                    answer = "I couldn't generate a grounded answer. Check GROQ_API_KEY in your Streamlit app's Settings → Secrets, then review the app logs if the problem continues."
-                    trace["generation"] = {
-                        "status": "failed",
-                        "error": type(exc).__name__,
-                        "cause": type(exc.__cause__).__name__ if exc.__cause__ else None,
-                    }
-                    trace["validation"] = {"status": "not_run", "reason": "generation_failed"}
-        except Exception as exc:
-            logger.exception("Retrieval failed while answering a user query")
-            answer = "The retrieval service isn't ready. Check that the embedding model is installed and the Chroma collection has been populated."
-            trace["error"] = type(exc).__name__
-            trace["generation"] = {"status": "not_attempted", "reason": "retrieval_failed"}
-            trace["validation"] = {"status": "not_run", "reason": "retrieval_failed"}
-
-    trace["answer"] = answer
-    trace.setdefault("validation", {"status": "not_applicable", "reason": "generation was skipped"})
-    st.session_state.last_trace = trace
-    st.session_state.messages.append({"role": "assistant", "content": answer, "sources": sources})
-    with st.chat_message("assistant", avatar="🌱"):
-        st.markdown(answer)
-        render_sources(sources)
-
-st.markdown(
-    '<div class="facts-footer">Facts-only information from indexed Groww pages · No investment advice</div>',
-    unsafe_allow_html=True,
-)
