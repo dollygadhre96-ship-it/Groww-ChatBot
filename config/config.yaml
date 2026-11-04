@@ -1,0 +1,35 @@
+sources:
+  crawl_internal_links: false
+  urls:
+    - https://groww.in/mutual-funds/amc/hdfc-mutual-funds
+    - https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth
+    - https://groww.in/mutual-funds/hdfc-equity-fund-direct-growth
+    - https://groww.in/mutual-funds/hdfc-elss-tax-saver-fund-direct-plan-growth
+    - https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth
+
+chunking:
+  chunk_size: 800
+  chunk_overlap: 120
+
+embeddings:
+  provider: sentence-transformers
+  model: sentence-transformers/all-MiniLM-L6-v2
+
+vector_store:
+  provider: chromadb
+  persist_directory: data/chroma
+  collection_name: hdfc_mf_faq
+
+retrieval:
+  top_k: 5
+  relevance_threshold: 0.45
+
+llm:
+  provider: groq
+  model: qwen/qwen3.8-27b
+  max_answer_sentences: 3
+
+guardrails:
+  facts_only: true
+  investment_advice: false
+  block_pii: true
