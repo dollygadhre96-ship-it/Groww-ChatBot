@@ -2,6 +2,27 @@
 
 A facts-only RAG demo for HDFC Mutual Fund FAQs. It is not investment advice.
 
+## Project links
+
+- **GitHub repository:** [Groww ChatBot](https://github.com/dollygadhre96-ship-it/Groww-ChatBot)
+- **Live prototype:** [Open the Streamlit app](https://groww-chatbot-kngkx7vjuez9igcjj8fqvx.streamlit.app/)
+
+## Sources, sample Q&A, and disclaimer
+
+This prototype uses five saved Groww pages as its source material:
+
+- [HDFC Mutual Fund overview (AMC)](https://groww.in/mutual-funds/amc/hdfc-mutual-funds)
+- [HDFC Large Cap Fund Direct Growth](https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth)
+- [HDFC Flexi Cap Fund Direct Plan Growth](https://groww.in/mutual-funds/hdfc-equity-fund-direct-growth)
+- [HDFC ELSS Tax Saver Fund Direct Plan Growth](https://groww.in/mutual-funds/hdfc-elss-tax-saver-fund-direct-plan-growth)
+- [HDFC Mid Cap Fund Direct Growth](https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth)
+
+**Sample question:** What exit load does the HDFC Flexi Cap source page show?
+
+**Sample answer:** The indexed Groww snapshot lists a 1% exit load for redemption within one year. [View the Groww source](https://groww.in/mutual-funds/hdfc-equity-fund-direct-growth)
+
+**Disclaimer:** This is an educational prototype that answers factual questions from the five indexed Groww source snapshots. The information may be incomplete or out of date. It is not investment advice or a recommendation to buy, hold, or sell any mutual fund. Check current scheme documents and consult a qualified adviser before making investment decisions.
+
 ## Setup
 
 1. Create a virtual environment in `.venv`.
