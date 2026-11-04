@@ -296,8 +296,13 @@ if query:
                     if not valid:
                         answer = "I couldn't produce a grounded answer that passed the source and length checks. Try rephrasing your question."
                 except Exception as exc:
-                    answer = "I couldn't generate a grounded answer right now. Check the Groq API key in .env and your internet connection, then try again."
-                    trace["generation"] = {"status": "failed", "error": type(exc).__name__}
+                    logger.exception("Groq answer generation failed for model %s", model_name)
+                    answer = "I couldn't generate a grounded answer. Check GROQ_API_KEY in your Streamlit app's Settings → Secrets, then review the app logs if the problem continues."
+                    trace["generation"] = {
+                        "status": "failed",
+                        "error": type(exc).__name__,
+                        "cause": type(exc.__cause__).__name__ if exc.__cause__ else None,
+                    }
                     trace["validation"] = {"status": "not_run", "reason": "generation_failed"}
         except Exception as exc:
             logger.exception("Retrieval failed while answering a user query")
