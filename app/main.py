@@ -39,7 +39,7 @@ st.markdown("""
 header[data-testid="stHeader"] { background: transparent; }
 .block-container { max-width: 980px; padding: 1.55rem 1.25rem 2.6rem; }
 .app-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.05rem; padding: 1.2rem 1.35rem; margin: .15rem 0 1.2rem; border: 1px solid #dfd1e8; border-radius: 1.4rem; background: linear-gradient(112deg, #f9e9ca 0%, #eee2f8 48%, #d9eee4 100%); box-shadow: 0 12px 30px rgba(100,82,115,.11); }
-.brand-mark { display: grid; place-items: center; width: 4rem; height: 4rem; border: 3px solid #fff8ed; border-radius: 1.3rem; background: linear-gradient(145deg, #9b6848 0%, #75482f 100%); color: #ffffff; font-size: 1.9rem; box-shadow: 0 0 0 4px rgba(224,194,154,.42), 0 9px 22px rgba(112,74,48,.22); }
+.brand-mark { display: grid; place-items: center; width: 4rem; height: 4rem; border: 3px solid #ffffff; border-radius: 1.3rem; background: linear-gradient(145deg, #c8eafb 0%, #9bd5ef 100%); color: #ffffff; font-size: 1.9rem; box-shadow: 0 0 0 4px rgba(147,202,231,.32), 0 9px 22px rgba(86,155,190,.2); }
 .brand-kicker { display: inline-flex; margin: 0 0 .4rem; padding: .27rem .62rem; border: 1px solid #ded9f6; border-radius: 999px; background: #efedff; color: #5f51bb; font-size: .68rem; font-weight: 780; letter-spacing: .12em; text-transform: uppercase; }
 .app-title { margin: 0; color: #292747; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 760; letter-spacing: -.04em; line-height: 1.12; }
 .app-subtitle { margin: .42rem 0 0; color: #686680; font-size: .94rem; }
